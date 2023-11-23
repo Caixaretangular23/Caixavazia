@@ -1,0 +1,27 @@
+Olá, bem, me chamo paulo, o desenvolvedor principal de Box(Box: Hello World!)
+
+----------Pseudocódigo---------------------
+
+1- Aumentar a praticidade(e alguns ajustes) na stalf room(EM FASE DE TESTE)
+2- [Feito]
+3- Arrumar os sprite da "Final_New"(Não prioritário)
+4- Impor continuedade na room "Game1"(EM FASE DE TESTE)
+5-	[Feito]
+
+Regras de desenvolvimento
+
+1- Tente manter a ordem
+2- Mantenha progresso constante
+3- Numa pasta de Content deve ter no máximo 10 obj ou 10 pastas
+
+-----Linha de lançamentos-----------
+
+1- Alpha para testes alheios(Em desenvolvimento).
+2- Prólogo(0).
+3- Demo.(0)
+4- Updates de complemento(0).
+
+-----propriedades-------
+
+resolução: 480x420
+nome: box

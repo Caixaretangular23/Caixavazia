@@ -1,0 +1,7 @@
+// Dinamic
+
+Alphapower_scr();
+
+
+
+

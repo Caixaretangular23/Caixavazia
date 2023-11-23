@@ -1,0 +1,5 @@
+Bem, categoria esta, separa os tipos de jogadores [3]
+, não significa que o jogo terá mais de um jogador, mas
+sim a necessidade de mais de um objeto a ser controlado
+como jogador.
+	De forma mais simples, objetos representativos que podem ser controlados.

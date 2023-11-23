@@ -1,0 +1,3 @@
+// Destaque
+
+Alphapower_scr();

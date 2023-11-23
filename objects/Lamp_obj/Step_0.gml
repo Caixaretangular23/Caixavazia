@@ -1,0 +1,3 @@
+// Alpha
+
+Alphapower_scr();

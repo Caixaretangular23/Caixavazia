@@ -1,0 +1,3 @@
+-O projeto foi pedido por um BUG!
+
+- Recomece com o sprites;

@@ -1,0 +1,11 @@
+	
+{Desafio}	
+	
+	Leve em consideração que o inimigo se trata de um evento de prólogo
+que impedirá o player de continuar jogando pelos motivos de:
+
+1- Empurrar [30 a 40]
+2- Cortar a energia das tomadas [50 a 70]
+
+{Como combater-lo}
+
