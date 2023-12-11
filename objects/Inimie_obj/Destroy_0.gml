@@ -1,4 +1,6 @@
-// Definindo posições de Bot
+// Definindo posições de Bot e tremendo
+
+instance_create_layer(x,y,"Instances", shake_obj)
 
 if (instance_exists(Controll_obj))
 {

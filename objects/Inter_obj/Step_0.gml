@@ -29,6 +29,14 @@ if (instance_exists(Controll_obj) && sprite_index == Button_spr)
 		{
 			audio_play_sound(Click_sound, 3, false);
 			Controll_obj.window = true;
+			
+			// Power Up (cartaz)
+			if (room == Stelf_tubo_04)
+			{
+				
+				if (Controll_obj.plus = 0 && x < room_width/2) Controll_obj.plus++;
+				if (Controll_obj.plus02 = 0 && x > room_width/2) Controll_obj.plus02++; // Outro ponto
+			}
 		}
 		// Tirando a janela
 		if (keyboard_check(ord("D")) || keyboard_check(ord("A"))) 

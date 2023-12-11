@@ -1,6 +1,6 @@
 Mpos = 0; // O modo de posição que o Player prologue estará imposto
 Desi = noone; // Destino
-
+lock = false; // Trava
 
 // Posição do player
 
@@ -8,9 +8,8 @@ if (instance_exists(Controll_obj))
 {
 	if (room == RoomP01_03)
 	{
-		if (Controll_obj.Los == 2) Player_obj.x = 448;
+		if (Controll_obj.Los == 2 || !Controll_obj.BB) Player_obj.x = 448;
 		if (Controll_obj.Los == 1) Player_obj.x = 780;
-		if (Controll_obj.Los == 0) Player_obj.x = 27;
 	}
 	
 	if (room  == Stelf_tubo_04)

@@ -90,6 +90,7 @@ if (room == Boot3_08)
 			T_obj.De = Game01;
 			T_obj.co = c_black;
 			boottime = 0;
+			Event = 0;
 		}
 	}
 	// Mostrando texto
@@ -293,7 +294,7 @@ if (room == Stelf_tubo_04)
 {
 	if (!Not) draw_sprite_ext(Test_spr, 0, room_width/2,room_height/2, room_width/64, room_height/64, 0, c_black, Ls);	
 	
-	// Variando Ls
+	// Desenhando Fundo (sombra)
 	
 	// Aumentando alpha
 	if (Stelp_obj.x > room_width/2 && Ls < .45 && !Controll_obj.Not) Ls += .05; 
@@ -304,13 +305,17 @@ if (room == Stelf_tubo_04)
 // Spawnando bot
 if (Hbx != noone && Hby != noone)
 {
-	if (room == Energy_05 && !instance_exists(Inimie_obj))
+	if (!instance_exists(Inimie_obj))
 	{
-		draw_sprite_ext(Bot_spr, Fb, Hbx, Hby, .5,.5, 0, c_white, 1);	
+		if (room == Energy_05 && Event < 3) draw_sprite_ext(Bot_spr, Fb, Hbx, Hby, .5,.5, 0, c_white, 1);	
+		if (room == RoomP01_03 && Event == 3) draw_sprite_ext(Bot_spr, Fb, Hbx, Hby, .5,.5, 0, c_white, 1);	
 	}
 }
-/* Anulador...
-if (Actp02 && room == Stelp_obj)
+
+// Cabo
+
+if (room == End)
 {
-	Espt++;
+	draw_set_color(c_white);
+	draw_text(room_width/2, room_height/2, "fim (cutscena pretendida)");
 }

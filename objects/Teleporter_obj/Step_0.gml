@@ -2,7 +2,7 @@
 
 if (place_meeting(x,y,Player_obj) || place_meeting(x,y, Stelp_obj))
 {
-	if (keyboard_check_pressed(ord("W")) && instance_exists(Controll_obj) && Controll_obj.BB == false && !Controll_obj.Inv)
+	if (keyboard_check_pressed(ord("W")) && instance_exists(Controll_obj) && Controll_obj.BB == false && !Controll_obj.Inv && Controll_obj.Md2  < 9 && !lock)
 	{
 		// Player
 		Controll_obj.Los = Mpos;

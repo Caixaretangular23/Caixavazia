@@ -51,6 +51,12 @@ if (instance_exists(Se_obj) && Se_obj.card == 1)
 	}
 }
 
+// Tremelique
+
+if (global.debugB)
+{
+	if (keyboard_check_pressed(ord("Z")) && !instance_exists(shake_obj)) instance_create_layer(x,y,"Instances", shake_obj);	
+}
 // Indicador F.
 if (Fre)
 {
@@ -91,7 +97,8 @@ if (keyboard_check_pressed(vk_escape) && !instance_exists(T_obj) && room != Menu
 		// indo para a room ideia
 		if (instance_exists(Monitor_obj) && Monitor_obj.D > 9)
 		{
-			T_obj.De = Idea;
+			if (Mode == 0) T_obj.De = Idea;
+			if (Mode == 2) T_obj.De = End;
 			T_obj.Aup = .01;
 			T_obj.Ado = .005;
 		}
@@ -145,9 +152,14 @@ if (keyboard_check_pressed(vk_escape) && !instance_exists(T_obj) && room != Menu
 	}
 }
 //  spawnanado o inimigo
-if (room == Energy_05)
+if (room == Energy_05 && Md2 < 9)
 {
 	if (Hand && !instance_exists(Inimie_obj)) instance_create_layer(room_width/2, room_height/2, "Instances_UP", Inimie_obj);	
+}
+
+if (room == RoomP01_03 && Md2 == 9)
+{
+	if (Hand && !instance_exists(Inimie_obj)) instance_create_layer(room_width/2, room_height/2, "Instances_UP", Inimie_obj);
 }
 // Game01
 
@@ -187,6 +199,24 @@ if (room == Game01)
 			Hand = true;
 			Li = false; // O negócio do Light deve ser repensado...
 			Not = false;
+			// Salvando os pontos
+			Md2 = Monitor_obj.D;
+			Mu2 = Monitor_obj.U;
+			
+			Event++;
+			audio_stop_all();
+			Los = 2;
+		}
+	}
+	// Tirando com 90
+	if (Mode == 2 && Event == 2)
+	{
+		if (Monitor_obj.D == 9 && !instance_exists(T_obj))
+		{
+			instance_create_layer(0,0,"Instances_UP", T_obj);
+			T_obj.De = RoomP01_03;
+			T_obj.co = c_white;
+			Hand = true;
 			// Salvando os pontos
 			Md2 = Monitor_obj.D;
 			Mu2 = Monitor_obj.U;
@@ -321,7 +351,59 @@ if (room == Nada)
 
 // Spawn de caixa no energy 5
 
-if (room == Energy_05 && Ton)
+if (room == Energy_05)
 {
-	if (!instance_exists(Pb_obj)) instance_create_layer(672, 384, "Instances", Pb_obj);	
+	if (!instance_exists(Pb_obj)) 
+	{
+		if (Ton == 1)instance_create_layer(576, 64, "Instances", Pb_obj);
+		if (Ton == 2)instance_create_layer(672, 384, "Instances", Pb_obj);	
+	}
+}
+
+// Reação dos power ups
+
+if (room == Stelf_tubo_04 && plus > 0 && plus02 > 0)
+{
+	if (!instance_exists(Pq_obj)) instance_create_layer(832, 0, "Instances", Pq_obj);
+	plus = -1;
+}
+
+// Spanwnando PQ
+if (room == Energy_05)
+{
+	if (!instance_exists(Pq_obj) && plus = -1)
+	{
+		if (C == false) instance_create_layer(576, -(room_height - blus), "Instances",Pq_obj);
+		else
+		{
+			instance_create_layer(576, room_height - 128, "Instances",Pq_obj);
+		}
+	}
+}
+// Dando powerUp
+
+if (C01 && C02 && C03 && Bobox01 == false)
+{
+	Bobox01 = true;
+	window = true;
+}
+
+// Energy powerUp
+
+if (Inv && YInd == 256 && (room == Energy_05 || room == EnergyX_06) && slotX > 0)
+{
+	window = true;
+	Eney01 = true;
+	slotX = 2
+}
+
+// PowerUp de bot
+
+if (room == Energy_05 && Player_obj.x > Hbx - 30 && Player_obj.x < Hbx + 30 && Hbx != 0 && Hby != 0)
+{
+	if (keyboard_check_pressed(ord("W")) && Jumb01 == false)
+	{
+		Jumb01 = true;
+		window = true;
+	}
 }

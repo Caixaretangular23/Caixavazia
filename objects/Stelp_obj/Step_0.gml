@@ -4,12 +4,9 @@ if (x <= limitx)
 {
 	if (keyboard_check(ord("D")))
 	{
-		if (sprite_index != Cima_spr && sprite_index != Baixo_spr)
-		{
-			x += SP;
-			sprite_index = Rune;
-			image_xscale = .35;
-		}
+		x += SP;
+		sprite_index = Rune;
+		image_xscale = .35;
 		// ??
 		if (instance_exists(Controll_obj)) Controll_obj.Ow = false;
 	}
@@ -25,12 +22,9 @@ if (x >= limitxi)
 {
 	if (keyboard_check(ord("A")))
 	{
-		if (sprite_index != Cima_spr && sprite_index != Baixo_spr)
-		{
-			x -= SP;
-			sprite_index = Rune;
-			image_xscale = -.35;
-		}
+		x -= SP;
+		sprite_index = Rune;
+		image_xscale = -.35;
 		if (instance_exists(Controll_obj)) Controll_obj.Ow = false;
 	}
 	// Sendo empurrado
@@ -60,7 +54,10 @@ if (sprite_index == Cima_spr && image_index >= 7)
 	Rune = PlayerES2_spr;
 }
 // Moldando limites
-if (keyboard_check_pressed(ord("S")) && sprite_index == Idol && Idol != Baixo2_spr && !Controll_obj.Inv) sprite_index = Baixo_spr;
+if (keyboard_check_pressed(ord("S")) && sprite_index == Idol && Idol != Baixo2_spr && !Controll_obj.Inv)
+{
+	sprite_index = Baixo_spr;
+}
 if (keyboard_check(ord("S")) && Idol == Baixo2_spr)
 {
 	// Máximo dos limites
@@ -80,7 +77,12 @@ if (!keyboard_check(ord("S")) && sprite_index != Rune)
 	{
 		if (Idol == Baixo2_spr || Idol == BaixoU_spr)
 		{
-			sprite_index = Cima_spr;	
+			sprite_index = Cima_spr;
+			if (sprite_index == Cima_spr && image_index >= 3)
+			{
+				Idol = PlayerES_spr;
+				Rune = PlayerES2_spr; 
+			}
 		}
 		
 	}

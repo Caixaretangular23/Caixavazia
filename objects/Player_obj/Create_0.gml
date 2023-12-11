@@ -1,7 +1,7 @@
 // Velocidade do player
 
-Vel01 = 0;
-Vel02 = .5;
+Vel01 = 0; // Resultado
+Vel02 = .05; // Variação
 Maxv = 5;
 // Gravidade e colisão
 S = 0;	// Var de gravidade

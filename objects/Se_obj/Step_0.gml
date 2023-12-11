@@ -58,7 +58,11 @@ if (Option == 0)
 	{
 		instance_create_layer(0,0,"Instances_UP", T_obj);
 		T_obj.co = c_white;
-		T_obj.De = Boot2_07;
+		if (Controll_obj.BB)T_obj.De = Boot2_07;
+		else
+		{
+			T_obj.De = RoomP01_03;
+		}
 	}
 }
 

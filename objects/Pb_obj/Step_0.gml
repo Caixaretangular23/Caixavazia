@@ -18,8 +18,8 @@ if (Controll_obj.Not && Controll_obj.Sm == 0 && room == Stelf_tubo_04) x -= .4;
 
 // Cair...
 
-if (!place_meeting(x,y,Chao_obj))
+if (!place_meeting(x,y,Chao_obj) && x <= 900)
 {
 	Gravity_scr();
-	Controll_obj.Ton = true;	
+	Controll_obj.Ton = 2;	
 }

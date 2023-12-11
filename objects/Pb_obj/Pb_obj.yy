@@ -29,8 +29,8 @@
   "properties": [],
   "solid": true,
   "spriteId": {
-    "name": "Simple_spr",
-    "path": "sprites/Simple_spr/Simple_spr.yy",
+    "name": "Presente_spr",
+    "path": "sprites/Presente_spr/Presente_spr.yy",
   },
   "spriteMaskId": null,
   "visible": true,

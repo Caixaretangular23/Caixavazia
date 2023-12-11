@@ -37,6 +37,10 @@ windowa = 0;
 
 global.debugB = false;
 
+// Inputs
+
+global.action = keyboard_check_pressed(ord("W"));
+
 //Posição
 
 Los = 0;
@@ -51,13 +55,14 @@ Xbag = 0; // X do indicador na bolsa
 slot01 = 0; // Possui o item desse slot (Token)?
 slot02 = 0; // Chave de energia
 slot03 = 0;
+slotX = 0; // Lanterna
 // Pano
 
 Toto = true;// Quer o guia?
 
 // Token no chão
 
-Ton = false;
+Ton = 0;
 
 // Power up (Que se tem)
 
@@ -113,6 +118,18 @@ Actp02 = true; // E a segunda ação?
 Into = true; // Inventário indicado?
 Ow = true; //Sabe sair?
 Espt = 0; // Tempo de indicador
+
+// [Power ups vars]
+
+plus = 0; // energia progresso
+plus02 = 0;
+blus = 0; // Gravidade dinâmica
+C = false;
+// Passou para a outra room
+quest01 = false; // Tarefa dos cartazes
+C01 = false; // Cartaz da room
+C02 = false; // Cartaz da Energy
+C03 = false; // Cartaz da Energy X
 
 // [Stelf]
 

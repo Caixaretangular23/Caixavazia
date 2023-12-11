@@ -16,13 +16,13 @@ else
 		{
 			if (x < room_width/2)
 			{
-				hspeed = 1 + (Monitor_obj.D/5);
+				hspeed = 1 + (Monitor_obj.D/7);
 				// Aditivo 01
 				if (Controll_obj.mouse) hspeed += .2;
 			}
 			if (x > room_width/2)
 			{
-				hspeed = -1 - (Monitor_obj.D/5);
+				hspeed = -1 - (Monitor_obj.D/7);
 				// Aditivo 02
 				if (Controll_obj.mouse) hspeed -= .2;
 			}

@@ -28,7 +28,7 @@ if (place_meeting(x,y, Escada_obj))
 
 // jump!
 
-if (place_meeting(x,y, Player_obj) && hit == 0)
+if (place_meeting(x,y, Player_obj) && hit == 0 && sprite_index == Inimie_spr)
 {
 	with(Player_obj)
 	{
@@ -51,4 +51,29 @@ if (Controll_obj.Not)
 {
 	Controll_obj.Hand = false;
 	instance_destroy();
+}
+
+// Finalização
+
+if (Controll_obj.Event == 3)
+{
+	TradeT++;
+	
+	// adicionando formas
+	
+	if (TradeT >= room_speed*5)
+	{
+		TradeF++;
+		TradeT = 0;
+	}
+	// limite
+	
+	if (TradeF > 2) TradeF = 0;
+	
+	// Resultando sprites
+	
+	if (TradeF == 0) sprite_index = Inimie_spr;
+	if (TradeF == 1) sprite_index = EB_spr;
+	if (TradeF == 2) sprite_index = Bot_spr;
+	
 }

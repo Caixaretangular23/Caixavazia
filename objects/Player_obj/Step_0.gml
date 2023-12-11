@@ -11,8 +11,9 @@ rigt02 = keyboard_check_released(ord("D"));
 
 if (left01 && !place_meeting(x - 7,y - 10,Chao_obj) && !Controll_obj.Inv)
 {
-	x += Vel01;
-	if (Vel01 > -Maxv) Vel01 -= Vel02;
+	x -= Vel01; // Velociddade resultante
+	// Impulsinando vel 
+	if (keyboard_check_pressed(ord("A")) || (keyboard_check_pressed(ord("D")))) Vel01 = Maxv * 2;
 	sprite_index = runa;
 	if (!aperta && !solta) image_xscale = -0.35;
 	// Desativando indicador (movimento)
@@ -20,17 +21,21 @@ if (left01 && !place_meeting(x - 7,y - 10,Chao_obj) && !Controll_obj.Inv)
 }
 if (rigt01 && !place_meeting(x + 7,y - 10,Chao_obj) && !Controll_obj.Inv)
 {
-	x += Vel01;
-	if (Vel01 < Maxv) Vel01 += Vel02;
+	x += Vel01; // Velociddade resultante
+	// Impulsinando vel 
+	if (keyboard_check_pressed(ord("D")) || (keyboard_check_pressed(ord("A")))) Vel01 = Maxv * 2;
 	sprite_index = runa;
 	if (!aperta && !solta) image_xscale = 0.35;
 	// Desativando indicador (movimento)
 	if (instance_exists(Controll_obj)) Controll_obj.MovT = false;
 }
-// Limites de velocidade
+// Controle de Vel
+if (Vel01 > Maxv) Vel01 -= .7;
+/* Limites de velocidade
 
 if (Vel01 >= Maxv) Vel01 = Maxv;
 if (Vel01 <= -Maxv) Vel01 = -Maxv;
+*/
 //if (Vel01 <= 0) Vel01 = 0;
 if (left02 || rigt02)
 {
