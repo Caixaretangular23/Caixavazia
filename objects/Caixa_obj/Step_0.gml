@@ -18,12 +18,14 @@ else
 			{
 				hspeed = 1 + (Monitor_obj.D/7);
 				// Aditivo 01
+				if (Player02_obj.x > room_width/2) hspeed -= .8;
 				if (Controll_obj.mouse) hspeed += .2;
 			}
 			if (x > room_width/2)
 			{
 				hspeed = -1 - (Monitor_obj.D/7);
 				// Aditivo 02
+				if (Player02_obj.x < room_width/2) hspeed += .8;
 				if (Controll_obj.mouse) hspeed -= .2;
 			}
 		}
@@ -38,7 +40,7 @@ else
 // Moni
 if (place_meeting(x,y, Monitor_obj) && Grv == false)
 {
-	instance_destroy(); // Se destruindo
+	// Interagindo com monitor
 	if (Bro == false)
 	{
 		if (Controll_obj.Bobox) Monitor_obj.U += 2;	
@@ -50,14 +52,14 @@ if (place_meeting(x,y, Monitor_obj) && Grv == false)
 	if (Bro == true && DBground_obj.itime < 1)
 	{
 		Monitor_obj.U -= Monitor_obj.D + 1;
-		audio_play_sound(Wong_sound, 1, false);
+		audio_play_sound(Wong_sound, .7, false);
 	}
 }
 if (y > room_height + 20) instance_destroy();
 
 if (Bro)
 {
-	sprite_index = CaixaB_spr;
+	sprite_index = Test_spr;
 }
 // Eventos de inativação
 
@@ -90,4 +92,32 @@ if (Grv)
 }
 
 //Anulando colisão ou iniciando o jogo
-if (place_meeting(x,y, Chao_obj)) y += 5;
+if (place_meeting(x,y, Chao_obj)) 
+{
+	y += 5;
+	if (DBground_obj.itime > 0 && Drama == false)
+	{
+			audio_play_sound(ToucG, 1, false);
+			Drama = true;
+	}
+}
+
+//Setinha
+
+if (place_meeting(x,y,Monitor_obj))
+{
+	if (hspeed >= 0)
+	{
+		Monitor_obj.Tipo = 1;
+		if (Bro) Monitor_obj.Tbro = "Baixo"
+		if (!Bro) Monitor_obj.Tbro = "Cima"
+		instance_destroy();
+	}
+	else
+	{
+		Monitor_obj.Tipo = 2;	
+		if (Bro) Monitor_obj.Tbro = "Baixo"
+		if (!Bro) Monitor_obj.Tbro = "Cima"
+		instance_destroy();
+	}
+}

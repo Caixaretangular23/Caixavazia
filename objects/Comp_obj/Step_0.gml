@@ -12,8 +12,11 @@ if (Controll_obj.Pause == false)
 
 if (place_meeting(x,y,Player02_obj))
 {
+	// Manejo de sons
+	if (keyboard_check_pressed(vk_up)) audio_play_sound(Eletic,.5,false);
+	if (keyboard_check_released(vk_up)) audio_stop_sound(Eletic);
 	// Mouse OFF
-	if (keyboard_check(ord("W")) && !Controll_obj.mouse)
+	if (keyboard_check(vk_up) && !Controll_obj.mouse)
 	{
 		if (!Controll_obj.Pause)
 		{
@@ -24,7 +27,7 @@ if (place_meeting(x,y,Player02_obj))
 		}
 	}
 	// Mouse ON
-	if (keyboard_check(vk_rcontrol) && Controll_obj.mouse)
+	if (keyboard_check(vk_up) && Controll_obj.mouse)
 	{
 		if (!Controll_obj.Pause)
 		{

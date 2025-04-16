@@ -1,9 +1,11 @@
 {
-  "resourceType": "GMNotes",
-  "resourceVersion": "1.1",
-  "name": "Inimigo_I",
-  "parent": {
-    "name": "Obejtos",
-    "path": "folders/Obejtos.yy",
+  "$GMNotes":"",
+  "%Name":"Inimigo_I",
+  "name":"Inimigo_I",
+  "parent":{
+    "name":"Obejtos",
+    "path":"folders/Obejtos.yy",
   },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
 }

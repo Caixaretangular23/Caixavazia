@@ -9,10 +9,10 @@ left01 = keyboard_check(vk_left);
 rigt01 = keyboard_check(vk_right);
 left02 = keyboard_check_released(vk_left);
 rigt02 = keyboard_check_released(vk_right);
-jump = keyboard_check_pressed(vk_up);
+jump = keyboard_check_pressed(vk_space);
 
 // Movimento
-if (left01 && Controll_obj.Pause == false) 
+if ((left01 || Esq) && Controll_obj.Pause == false) 
 {
 	x -= vel;
 	// Aumente a velocidade no modo normal e loop
@@ -30,7 +30,7 @@ if (left01 && Controll_obj.Pause == false)
 	// Tirando o indicador
 	if (instance_exists(Controll_obj)) Controll_obj.MovT02 = false;
 }
-if (rigt01 && Controll_obj.Pause == false)
+if ((rigt01 || Dir) && Controll_obj.Pause == false)
 {
 	x += vel;	
 	// Aumente a velocidade no modo normal e loop
@@ -48,9 +48,21 @@ if (rigt01 && Controll_obj.Pause == false)
 	// Tirando o Indicador
 	if (instance_exists(Controll_obj)) Controll_obj.MovT02 = false;
 }
-if (!left01 && !rigt01 && onfloor) sprite_index = FPlayer_spr;
+// Se pararem
+if (onfloor)
+{
+	if (!Controll_obj.Phone)
+	{
+		if (!left01 && !rigt01) sprite_index = FPlayer_spr;
+	}
+	else
+	{
+		if (!Dir && !Esq) sprite_index = FPlayer_spr;
+	}
+}
+
 // Pulo
-if (jump && onfloor && Controll_obj.Pause == false)
+if (jump && onfloor && Controll_obj.Pause == false && !instance_exists(Bullet_obj))
 {
 	S = -7;
 	sprite_index = FJlayer_spr;

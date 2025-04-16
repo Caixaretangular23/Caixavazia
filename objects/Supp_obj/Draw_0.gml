@@ -1,6 +1,18 @@
 // Desenhando complemento
 
-draw_sprite_ext(A_spr, 0, x, y - 13, .3, .3, point_direction(x,y,Tx02, 128), c_white, 1);
+if (Controll_obj.mouse)
+{
+	if ((x > room_width/2 && Player02_obj.x > room_width/2) || (x < room_width/2 && Player02_obj.x < room_width/2))
+	{
+		if (Tge) Mtx = mouse_x;
+	}
+	// Desenhando o ca.
+	draw_sprite_ext(A_spr, 0, x, y - 13, .3, .3, point_direction(x,y,Mtx, 128), c_white, 1);
+}
+else
+{
+		draw_sprite_ext(A_spr, 0, x, y - 13, .3, .3, point_direction(x,y,Tx02, 128), c_white, 1);
+}
 
 draw_self(); // Desenhando-se
 

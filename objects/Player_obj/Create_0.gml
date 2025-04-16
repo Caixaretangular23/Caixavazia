@@ -1,3 +1,5 @@
+// Frescura de janela :(
+Tj = 0;
 // Velocidade do player
 
 Vel01 = 0; // Resultado
@@ -26,3 +28,15 @@ aperta = false;
 solta = false;
 
 xs = .35;
+
+// Propriedades de fundo
+
+Frame = 0;
+
+// Sons indepedente
+
+if (room == EnergyX_06) audio_play_sound(Clock,1,false);
+else
+{
+	audio_stop_sound(Clock);	
+}

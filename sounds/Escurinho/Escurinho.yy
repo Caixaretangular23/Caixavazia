@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"Escurinho",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":38.88,
+  "name":"Escurinho",
+  "parent":{
+    "name":"Energy05",
+    "path":"folders/Sounds/Energy05.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"Escurinho.mp3",
+  "type":0,
+  "volume":1.0,
+}

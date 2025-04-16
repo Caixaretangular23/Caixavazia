@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"Caixa01",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.368,
+  "name":"Caixa01",
+  "parent":{
+    "name":"Room",
+    "path":"folders/Sounds/Room.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"Caixa01.mp3",
+  "type":0,
+  "volume":1.0,
+}

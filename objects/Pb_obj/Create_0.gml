@@ -4,8 +4,12 @@ image_yscale = .3;
 
 if (instance_exists(Controll_obj))
 {
-	if (Controll_obj.slot01) instance_destroy();	
+	if (Controll_obj.slot01 || (Controll_obj.Ton != 0 && room == Stelf_tubo_04))
+	{
+		instance_destroy();	
+	}
 }
 
 onfloor = false
 S = 0;
+

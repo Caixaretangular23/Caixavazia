@@ -1,9 +1,11 @@
 {
-  "resourceType": "GMNotes",
-  "resourceVersion": "1.1",
-  "name": "Reports",
-  "parent": {
-    "name": "Box",
-    "path": "Box.yyp",
+  "$GMNotes":"",
+  "%Name":"Reports",
+  "name":"Reports",
+  "parent":{
+    "name":"Box",
+    "path":"Box.yyp",
   },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
 }

@@ -43,3 +43,47 @@ if (D > 9 && instance_exists(Controll_obj) && Controll_obj.Mode == 0)
 	Controll_obj.Md = 0;
 	Controll_obj.Mu = 0;
 }
+
+// Demarcações
+
+if (Tipo == 1)
+{
+	Timpo++;
+	Talpa -= .01;
+	
+	if (Tbro == "Cima") 
+	{
+		draw_sprite_ext(Setau_spr,0,x - 100,Tay,1,1,0,c_white,Talpa);
+		Tay -= 1;
+	}
+	if (Tbro == "Baixo") 
+	{
+		draw_sprite_ext(Setab_spr,0,x - 100,Tay,1,1,0,c_white,Talpa);
+		Tay += 1;
+	}
+	
+}
+
+if (Tipo == 2)
+{
+	Timpo++;
+	Talpa -= .01;
+	if (Tbro == "Cima") 
+	{
+		draw_sprite_ext(Setau_spr,0,x + 100,Tay,1,1,0,c_white,Talpa);
+		Tay -= 1;
+	}
+	if (Tbro == "Baixo") 
+	{
+		draw_sprite_ext(Setab_spr,0,x + 100,Tay,1,1,0,c_white,Talpa);
+		Tay += 1;
+	}
+}
+
+if (Talpa == 0)
+{
+	Tipo = 0;
+	Tbro = "Indefinido";
+	Talpa = 1;
+	Tay = y;
+}

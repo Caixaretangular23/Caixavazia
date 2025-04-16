@@ -18,6 +18,7 @@ function DrawInv_scr()
 	{ 
 		if (window) window = false;
 		Inv = true;
+		audio_play_sound(InvP, 1, false); // Tocando audio
 		Controll_obj.Into = false;
 		show_debug_message("+Inv");
 	}
@@ -25,6 +26,7 @@ function DrawInv_scr()
 	{
 		if (window) window = false;
 		Inv = false;
+		audio_play_sound(InvB, 1, false); // Tocando audio
 		show_debug_message("-Inv");
 	}
 }

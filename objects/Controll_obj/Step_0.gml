@@ -27,6 +27,8 @@ if (Beat &&  !instance_exists(T_obj) && keyboard_check_pressed(vk_enter) && room
 	}
 	room_restart();
 }
+// anti pause
+if (instance_exists(T_obj) && Pause) Pause = false;
 // Controlle de pause
 if (keyboard_check_pressed(ord("P")) && room == Game01) alarm[0] = room_speed*.5;
 // Mouse system
@@ -77,6 +79,7 @@ else
 	Frt = 0;
 }
 
+
 // Saindo...
 
 if (keyboard_check_pressed(vk_escape) && !instance_exists(T_obj) && room != Menu_01)
@@ -87,7 +90,8 @@ if (keyboard_check_pressed(vk_escape) && !instance_exists(T_obj) && room != Menu
 	
 	if (Beat) Beat = false;
 	// Se estiver no jogo
-	if (room == Game01 && Mode == 2)
+	if (room == Game01) audio_play_sound(Saindo0,1,false);
+	if (room == Game01 && Mode == 2 && Monitor_obj.D < 10)
 	{
 		T_obj.De = RoomP01_03;
 		Los = 2;
@@ -111,7 +115,8 @@ if (keyboard_check_pressed(vk_escape) && !instance_exists(T_obj) && room != Menu
 	// Resetando posição
 	if (room != Game01) Los = 0;
 	// Parando os sons
-	audio_stop_all();
+	audio_stop_sound(BoxTheme);
+	audio_stop_sound(BoxSyheme);
 	
 	// Salvando ponyos
 	if (instance_exists(Monitor_obj) && Boss == false)
@@ -157,7 +162,7 @@ if (room == Energy_05 && Md2 < 9)
 	if (Hand && !instance_exists(Inimie_obj)) instance_create_layer(room_width/2, room_height/2, "Instances_UP", Inimie_obj);	
 }
 
-if (room == RoomP01_03 && Md2 == 9)
+if (room == RoomP01_03 && Md2 == 9 && Event == 3)
 {
 	if (Hand && !instance_exists(Inimie_obj)) instance_create_layer(room_width/2, room_height/2, "Instances_UP", Inimie_obj);
 }
@@ -176,6 +181,7 @@ if (room == Game01)
 			slot03 = 1;
 			Hand = true;
 			window = true;
+			winspr = Arc01_spr;
 			Li = false; // O negócio do Light deve ser repensado...
 			Not = false;
 			audio_stop_all();
@@ -196,6 +202,7 @@ if (room == Game01)
 			T_obj.De = RoomP01_03;
 			T_obj.co = c_white;
 			window = true;
+			winspr = Arc02_spr;
 			Hand = true;
 			Li = false; // O negócio do Light deve ser repensado...
 			Not = false;
@@ -281,7 +288,7 @@ else
 }
 // Manipulando o evento de janela
 
-if (window && windowa < 1 && Inv == false) windowa += .05;
+if (window && windowa < 1) windowa += .05;
 if (window == false && windowa > 0) windowa -= 0.05;
 
 // Controlando a var de animação
@@ -292,7 +299,7 @@ if (Fb >= 2) Fb = 0;
 
 // Ligando e desligando inventário base
 
-DrawInv_scr();
+if (room != Menu_01 && room != Game01) DrawInv_scr();
 
 // Ativando item place holder
 
@@ -355,8 +362,12 @@ if (room == Energy_05)
 {
 	if (!instance_exists(Pb_obj)) 
 	{
-		if (Ton == 1)instance_create_layer(576, 64, "Instances", Pb_obj);
-		if (Ton == 2)instance_create_layer(672, 384, "Instances", Pb_obj);	
+		if (Ton == 1)
+		{
+			instance_create_layer(576, 64, "Instances_UP", Pb_obj);
+			Ton = 2;
+		}
+		if (Ton == 2 && !instance_exists(Pb_obj))instance_create_layer(576, 384, "Instances_UP", Pb_obj);	
 	}
 }
 
@@ -376,7 +387,7 @@ if (room == Energy_05)
 		if (C == false) instance_create_layer(576, -(room_height - blus), "Instances",Pq_obj);
 		else
 		{
-			instance_create_layer(576, room_height - 128, "Instances",Pq_obj);
+			instance_create_layer(576 + 170, room_height - 128, "Instances",Pq_obj);
 		}
 	}
 }
@@ -385,25 +396,108 @@ if (room == Energy_05)
 if (C01 && C02 && C03 && Bobox01 == false)
 {
 	Bobox01 = true;
+	if (XMbag < 128) XMbag = 128;
 	window = true;
+	winspr = Quest_spr;
 }
 
-// Energy powerUp
+// Energy powerUp e tocando o tenebroso, Uuuuu...
 
-if (Inv && YInd == 256 && (room == Energy_05 || room == EnergyX_06) && slotX > 0)
+if (room == Energy_05 && !Not)
 {
-	window = true;
-	Eney01 = true;
-	slotX = 2
+	// Tocando a braba
+	if (!Tenebrose && !Not)
+	{
+		if (Hand) audio_play_sound(Tenebroso,1,true);
+		else
+		{
+			audio_play_sound(Escurinho,1,true);
+		}
+		Tenebrose = true;
+	}
+	// Power Up
+	if (Inv && YInd == 256 && slotX > 0 && !Eney01)
+	{
+		window = true;
+		winspr = Quest_spr;
+		Eney01 = true;
+		if (XMbag < 256) XMbag = 256 
+		slotX = 2
+	}
+}
+else
+{
+	if (Tenebrose)
+	{
+		audio_stop_sound(Tenebroso);
+		Tenebrose = false;
+	}
 }
 
 // PowerUp de bot
 
-if (room == Energy_05 && Player_obj.x > Hbx - 30 && Player_obj.x < Hbx + 30 && Hbx != 0 && Hby != 0)
+if (room == Energy_05 && Player_obj.x > Hbx - 50 && Player_obj.x < Hbx + 50 && Hbx != 0 && Hby != 0)
 {
 	if (keyboard_check_pressed(ord("W")) && Jumb01 == false)
 	{
 		Jumb01 = true;
+		if (XMbag < 384) XMbag = 384;
 		window = true;
+		winspr = Quest_spr;
+	}
+}
+
+// Criando os ventins effects
+
+
+if (Not && slot01 <= 0)
+{
+	if (!instance_exists(Cuteffect_obj))
+	{
+		if (room == Energy_05) instance_create_layer(596,89, "Instances_UP", Cuteffect_obj);
+		// Com o interruptor
+		if (room == Stelf_tubo_04)
+		{
+			with(Inter_obj)
+			{
+				if (x > room_width/2)
+				{
+					instance_create_layer(x,y, "Instances_UP", Cuteffect_obj);
+					Cuteffect_obj.image_xscale = image_xscale;
+					Cuteffect_obj.image_yscale = image_yscale;
+					Cuteffect_obj.image_blend = c_yellow;
+				}
+			}
+		}
+	}
+}
+else
+{
+	if (instance_exists(Cuteffect_obj)) instance_destroy(Cuteffect_obj);	
+}
+
+// Alternativa pars hand
+
+if (room == EnergyX_06)
+{
+	if (Hand) Hand = false;
+}
+
+// Manejos de som
+
+if (room == Stelf_tubo_04)
+{
+	if (Stelfound == false)
+	{
+		Stelfound = true
+		 if (Not) audio_play_sound(ventin, 1, true);
+	}
+}
+else
+{
+	if (Stelfound)
+	{
+		Stelfound = false;	
+		if (Not) audio_stop_sound(ventin);
 	}
 }

@@ -12,3 +12,7 @@ xs = 1;
 
 Ro = 0;
 Rq = 0;
+
+// Ventin
+
+if (sprite_index == Ventin02_spr) image_blend = c_fuchsia;

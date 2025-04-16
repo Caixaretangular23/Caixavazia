@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Vei_scr",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Script",
-    "path": "folders/Script.yy",
+  "$GMScript":"",
+  "%Name":"Vei_scr",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Vei_scr",
+  "parent":{
+    "name":"Script",
+    "path":"folders/Script.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

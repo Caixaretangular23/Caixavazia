@@ -9,3 +9,12 @@ if (room == Nada)
 	image_yscale = 1;
 	image_alpha = .5;
 }
+
+// Setando posições iniciais
+
+if (instance_exists(Controll_obj) && !Controll_obj.mouse)
+{
+	
+	x = room_width/2;
+	y = room_height/2;
+}

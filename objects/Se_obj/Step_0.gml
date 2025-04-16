@@ -1,3 +1,5 @@
+// Equalizando
+Arcad = Controll_obj.Arcad;
 image_yscale = image_xscale; // Obrigando a proporção
 //Tirando a janela
 if (keyboard_check_pressed(vk_enter))
@@ -10,7 +12,7 @@ if (keyboard_check_pressed(vk_right) || keyboard_check_pressed(vk_left))
 }
 // Variando a var
 
-if (Option <= 1 && keyboard_check_pressed(vk_right))
+if (Option <= Mx0 && keyboard_check_pressed(vk_right))
 {
 	Option++;	
 	if (Controll_obj.window) Controll_obj.window = false;
@@ -30,6 +32,21 @@ if (Option >= 2) Option = 2;
 if (Option <= 0) Option = 0;
 
 // Influências de "Option"
+if (Option == 3 && card = 0)
+{
+	image_xscale = .6;
+	sprite_index = Options_spr;
+	// Se interagir
+	if (keyboard_check_pressed(vk_enter) && transtime >= room_speed*.3)
+	{
+		card = 3;
+		Mx0 = 0;
+		Option = 0;
+		transtime = 0;
+		transtime = 0;
+		if (instance_exists(Controll_obj)) Controll_obj.AcTo = false;
+	}
+}
 if (Option == 2 && card == 0)
 {
 	image_xscale = .7;
@@ -41,10 +58,11 @@ if (Option == 1 && card == 0)
 	image_xscale = .7;
 	sprite_index = Playmenu_spr;
 	Controll_obj.window = false // desativando
-	if (keyboard_check_pressed(vk_enter) && transtime >= room_speed)
+	if (keyboard_check_pressed(vk_enter) && transtime >= room_speed*.3 && Arcad)
 	{
 		card = 1;
 		Option = 0;
+		Mx0 = 1;
 		transtime = 0;
 		if (instance_exists(Controll_obj)) Controll_obj.AcTo = false;
 	}
@@ -54,7 +72,7 @@ if (Option == 0)
 	image_xscale = .7;
 	sprite_index = Start_spr;
 
-	if (keyboard_check_pressed(vk_enter) && transtime >= room_speed && card == 0)
+	if (keyboard_check_pressed(vk_enter) && transtime >= room_speed*.3 && card == 0)
 	{
 		instance_create_layer(0,0,"Instances_UP", T_obj);
 		T_obj.co = c_white;
@@ -70,7 +88,7 @@ if (Option == 0)
 
 transtime++;
 
-if (transtime >= room_speed)
+if (transtime >= room_speed*.3)
 {
-	transtime = room_speed;
+	transtime = room_speed*.3;
 }

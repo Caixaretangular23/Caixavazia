@@ -6,10 +6,10 @@ if (Bro)
 }
 else
 {
-	if (!Controll_obj.Bobox) draw_sprite_ext(Ponts_spr, 1, x, y - 40, 1, 1, image_angle, c_white, 1);
+	if (!Controll_obj.Bobox) draw_sprite_ext(Ponts_spr, 0, x, y - 40, 1, 1, image_angle, c_white, 1);
 	else
 	{
-		draw_sprite_ext(Ponts_spr, 2, x, y - 40, 1, 1, image_angle, c_white, 1);
+		draw_sprite_ext(Ponts_spr, 1, x, y - 40, 1, 1, image_angle, c_white, 1);
 	}
 }
 

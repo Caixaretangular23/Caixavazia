@@ -11,3 +11,10 @@ apertado02 = false;
 solta02 = false;
 
 xs = .3;
+
+// Inputs de dispositivo Android
+
+Esq = false;
+Dir = false;
+Jump = false;
+Ac = false;

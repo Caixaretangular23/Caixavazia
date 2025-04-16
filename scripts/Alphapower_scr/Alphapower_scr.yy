@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Alphapower_scr",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Script",
-    "path": "folders/Script.yy",
+  "$GMScript":"",
+  "%Name":"Alphapower_scr",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Alphapower_scr",
+  "parent":{
+    "name":"Script",
+    "path":"folders/Script.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

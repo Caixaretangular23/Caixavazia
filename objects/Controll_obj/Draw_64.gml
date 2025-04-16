@@ -4,6 +4,7 @@ if (global.debugB)
 	draw_text_color(20,20, "Modo: " + string(Mode), c_white,c_white,c_white,c_black, 1);
 	draw_text_color(20,40, "Peach:  " + string(PeAchao), c_white,c_white,c_white,c_black, 1);
 	draw_text_color(20,80, "Event:  " + string(Event), c_white,c_white,c_white,c_black, 1);
+	draw_text_color(room_width/2, 40, "Pextra: " + string(Pextra), c_black,c_black,c_black,c_black, 1);
 }
 // Início
 if (room == RoomP01_03)
@@ -69,14 +70,15 @@ if (room == Boot2_07)
 	
 	if (boottime >= room_speed*3)
 	{
+		audio_play_sound(intro, 1, false);
 		if (!instance_exists(T_obj)) instance_create_layer(0,0, "Instances", T_obj);
 		T_obj.De = RoomP01_03;
 		T_obj.co = c_white;
 		boottime = 0;
 	}
 	
-	if (instance_exists(T_obj))	draw_sprite_ext(T_spr,0, room_width/2, room_height/2, 1, 1, 0, c_white, (T_obj.Aes * -1) + 1);
-	if (!instance_exists(T_obj)) draw_sprite_ext(T_spr,0, room_width/2, room_height/2, 1, 1, 0, c_white, 1);
+	if (instance_exists(T_obj))	draw_sprite_ext(Boot01_spr,0, room_width/2, room_height/2, 1, 1, 0, c_white, (T_obj.Aes * -1) + 1);
+	if (!instance_exists(T_obj)) draw_sprite_ext(Boot01_spr,0, room_width/2, room_height/2, 1, 1, 0, c_white, 1);
 }
 
 // Entrando no Game 01 BOOT03
@@ -118,7 +120,8 @@ if (instance_exists(DBground_obj))
 	}
 }
 // Barras(...)
-if (room == Game01)
+
+if (room == Game01 && !Phone)
 {
 	// Imagem a fora
 	if (!instance_exists(T_obj))
@@ -139,13 +142,13 @@ if (room == Game01)
 	// Variando a barra da direita
 	if (!mouse)
 	{
-		if (keyboard_check_pressed(ord("W"))) Sf02 = 1;
-		if (keyboard_check_released(ord("W"))) Sf02 = 0;
+		if (keyboard_check_pressed(vk_up)) Sf02 = 1;
+		if (keyboard_check_released(vk_up)) Sf02 = 0;
 	}
 	else
 	{
-		if (keyboard_check_pressed(vk_control)) Sf02 = 1;
-		if (keyboard_check_released(vk_control)) Sf02 = 0;
+		if (keyboard_check_pressed(vk_up)) Sf02 = 1;
+		if (keyboard_check_released(vk_up)) Sf02 = 0;
 	}
 }
 // Sinalização
@@ -165,7 +168,7 @@ if (global.debugB){
 
 // Gerando uma janela
 
-if (windowa > 0) draw_sprite_ext(winspr, 0,room_width/2, room_height/2, 1,1,0,c_white,windowa);
+if (windowa > 0) draw_sprite_ext(winspr, winmage,room_width/2, room_height/2, 1,1,0,c_white,windowa);
 if (window <= 0 && !window) winspr = PaperH1_spr;
  
 // Inventário
@@ -183,10 +186,18 @@ if (slot01 > 0)
 {
 	draw_sprite_ext(Icon03_spr, 0,Xinv + (Xinv * -1.8), 384,.15,.15,0, c_white, (Xinv/100) + 1.9);	
 }
-if (slot02 > 0) draw_sprite_ext(Icon01_spr, 0,Xinv + (Xinv * -1.8), 256,.15,.15,0, c_white, (Xinv/100) + 1.9);	
+if (slot02 > 0)
+{
+	if (slotX > 0 && !Eney01) draw_sprite_ext(IcoLn01_spr, 0,Xinv + (Xinv * -1.8), 256,.15,.15,0, c_white, (Xinv/100) + 1.9);	
+	else
+	{
+		draw_sprite_ext(Icon01_spr, 0,Xinv + (Xinv * -1.8), 256,.15,.15,0, c_white, (Xinv/100) + 1.9);
+	}
+}
 if (slot03 > 0) draw_sprite_ext(IIncon_spr, 0, Xinv + (Xinv * -1.8), 128, .15, .15, 0, c_white, (Xinv/100) + 1.9);
 // Seletor
 draw_sprite_ext(Tg02_spr, 0,Xinv + (Xinv * -1.8),YInd, 1,1, 90,c_white,(Xinv/100) + 1.5);
+if ((YInd != 128 && slot03 > 0) || (slot03 < 1)) draw_sprite_ext(Fircor_spr, Fr,Xinv + (Xinv * -1.8) + 150,YInd, .35,.35, 0,c_white,(Xinv/100) + 1.9);
 // Pano
 if (YInd == 128 && slot03 > 0)
 {
@@ -207,35 +218,76 @@ if (YInd == 128 && slot03 > 0)
 			if (Player_obj.x > Bag_obj.x - 50 && Player_obj.x < Bag_obj.x + 50)
 			{
 					// Desenhando...
-					draw_sprite_ext(Selec_spr, 0,(Xinv + (Xinv * -1.8)) + (156 + Xbag),150, .5,.5, 0,c_white,(Xinv/100) + 1.9);
+					if (XMbag > 0 || PeAchao01) draw_sprite_ext(Selec_spr, 0,(Xinv + (Xinv * -1.8)) + (156 + Xbag),150, .5,.5, 0,c_white,(Xinv/100) + 1.9);
+					
+					// Setas
+					if (Xbag > 0) draw_sprite_ext(Ar_spr, 0, (Xinv + (Xinv * -1.8)) + (156 + Xbag - 64),134, -.5,.5,0,c_white, 1);
+					if (Xbag < XMbag) draw_sprite_ext(Ar_spr, 0, (Xinv + (Xinv * -1.8)) + (156 + Xbag + 64),134, .5,.5,0,c_white, 1);
 				
 					// Mudando pos do sel.
-					if (keyboard_check_pressed(ord("D")) && Xbag < 512 && YInd == 128) Xbag += 128;
+					if (keyboard_check_pressed(ord("D")) && Xbag < XMbag && YInd == 128) Xbag += 128;
 					if (keyboard_check_pressed(ord("A")) && Xbag > 0 && YInd == 128) Xbag -= 128;
 				
 					// Trocando powerUP
-					if (Xbag == 0 && PeAchao01 = true) PeAchao = true;
-					else
+					if (!PeAchao02)
 					{
-						PeAchao = false
-					}
+						if (Xbag == 0 && PeAchao01 = true)
+						{
+							PeAchao = true;
+							if (!window) 
+							{
+								window = true;
+							}
+							winspr = Card01_spr;
+						}
+						else
+						{
+							PeAchao = false
+						}
 				
-					if (Xbag == 128 && Bobox01 = true) Bobox = true;
-					else
-					{
-						Bobox = false
+						if (Xbag == 128 && Bobox01 = true)
+						{
+							Bobox = true;
+							if (!window) window = true;
+							winspr = Card02_spr;
+						}
+						else
+						{
+							Bobox = false
+						}
+						if (Xbag == 256 && Eney01 = true)
+						{
+							Eney = true;
+							if (!window) window = true;
+							winspr = Card03_spr;
+						}
+						else
+						{
+							Eney = false
+						}
+						if (Xbag == 384 && Jumb01 = true)
+						{
+							Jumb = true;
+							if (!window) window = true;
+							winspr = Card04_spr;
+						}
+						else
+						{
+							Jumb = false
+						}
 					}
-					if (Xbag == 256 && Eney01 = true) Eney = true;
-					else
+					// Power UP geral
+					if (Xbag == 512 && PeAchao0 = true)
 					{
-						Eney = false
+						PeAchao = true;
+						Bobox = true;
+						Eney = true;
+						Jumb = true;
+						PeAchao02 = true;
+						// Menssagem
+						if (!window) window = true;
+						winspr = Vantagem_spr;
 					}
-					if (Xbag == 384 && Jumb01 = true) Jumb = true;
-					else
-					{
-						Jumb = false
-					}
-					if (Xbag == 512 && PeAchao0 = true) PeAchao02 = true;
 					else
 					{
 						PeAchao02 = false
@@ -243,10 +295,25 @@ if (YInd == 128 && slot03 > 0)
 			}
 			else
 			{
-				draw_sprite_ext(Ac_spr, 0,(Xinv + (Xinv * -1.8)) + (156 + Xbag),150, .5,.5, 0,c_white,(Xinv/100) + 1.9);	
+				if (XMbag > 0 || PeAchao01) draw_sprite_ext(Ac_spr, 0,(Xinv + (Xinv * -1.8)) + (156 + Xbag),150, .5,.5, 0,c_white,(Xinv/100) + 1.9);	
 			}
 			// Outra ocasião
 			if (!instance_exists(Bag_obj)) draw_sprite_ext(Ac_spr, 0,(Xinv + (Xinv * -1.8)) + (156 + Xbag),150, .5,.5, 0,c_white,(Xinv/100) + 1.9);
+		}
+	}
+}
+// Sinalizador do TOKEN
+if (slot01 > 0)
+{
+	if (!Bol)
+	{
+		if (!Inv)
+		{
+			draw_sprite_ext(Bol_spr, 0, 64,64,1,1,0,c_white, 1);
+		}
+		else
+		{
+			Bol = true;	
 		}
 	}
 }
@@ -312,10 +379,52 @@ if (Hbx != noone && Hby != noone)
 	}
 }
 
-// Cabo
-
-if (room == End)
+// Vision
+if (room == RoomP01_03 && Player_obj.x <= 64 && !BB && !Hand)
 {
-	draw_set_color(c_white);
-	draw_text(room_width/2, room_height/2, "fim (cutscena pretendida)");
+	draw_sprite_ext(Spow,0,room_width/2,room_height/2,1,1,0,c_white, Powera);
+	
+	if (!PeAchao0 && PeAchao01 && Bobox01 && Eney01 && Jumb01) Spow = Enoite_spr;
+	
+	if (Powera < 1) Powera += .001;
+	else
+	{
+		if (Spow = Enoite_spr)
+		{
+			PeAchao0 = true;
+			window = true;
+			winspr = Quest_spr;
+			if (XMbag < 512) XMbag  = 512;
+		}
+	}
+}
+else
+{
+	Powera = 0;	
+}
+
+// Hud de tela inteira
+
+if (instance_exists(Pq_obj))
+{
+	with (Pq_obj)
+	{
+		// Mensagem em "papel"
+
+		if (showup)
+		{
+			draw_sprite_ext(Paperhow_spr, 0,room_width/2, room_height/2, 1,1,0,c_white,1);
+	
+			// Desativando
+	
+			if (keyboard_check_pressed(vk_backspace))
+			{
+				showup = false;
+				Controll_obj.blus = 0;
+				Controll_obj.quest01 = true;
+				Teleporter_obj.lock = false;
+				instance_destroy();
+			}
+		}	
+	}
 }

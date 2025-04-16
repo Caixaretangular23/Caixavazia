@@ -1,6 +1,7 @@
 Mpos = 0; // O modo de posição que o Player prologue estará imposto
 Desi = noone; // Destino
 lock = false; // Trava
+Tlock = 0; // Tempo para desbloquear
 
 // Posição do player
 

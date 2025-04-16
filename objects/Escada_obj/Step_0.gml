@@ -10,6 +10,8 @@ if (instance_exists(Player_obj))
 	}
 }
 
+// Variando sprite
+if (room == Energy_05 && sprite_index != Floor3_spr) sprite_index = Floor3_spr;
 // Destaque
 
 Alphapower_scr();

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Paia_scr",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Script",
-    "path": "folders/Script.yy",
+  "$GMScript":"",
+  "%Name":"Paia_scr",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Paia_scr",
+  "parent":{
+    "name":"Script",
+    "path":"folders/Script.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

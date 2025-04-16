@@ -12,7 +12,8 @@ if (pros >= 100 && !instance_exists(T_obj))
 	{
 		instance_create_layer(x,y,"Instances", T_obj);
 		T_obj.De = Nada;
-	
+		T_obj.Ado = .005;
+		audio_play_sound(Bye, 1, false);
 		// Desativando o inventário
 	
 		Controll_obj.Inv = false;
@@ -31,7 +32,12 @@ if (Controll_obj.Not) sprite_index = EBO_spr;
 if (place_meeting(x,y,Player_obj) && Controll_obj.slot02 <= 0 && Controll_obj.Not == false)
 {
 	// Mostrando
-	if (keyboard_check_pressed(ord("W")) && !Controll_obj.Inv) Controll_obj.window = true;
+	if (keyboard_check_pressed(ord("W")) && !Controll_obj.Inv)
+	{
+		audio_play_sound(Energia,1,false);
+		Controll_obj.winspr = BoxEne_spr;
+		Controll_obj.window = true;
+	}
 	// Tirando
 	if (keyboard_check_pressed(ord("D")) || keyboard_check_pressed(ord("A")))
 	{

@@ -14,7 +14,7 @@ if (instance_exists(Controll_obj))
 	if (place_meeting(x,y,Player02_obj))
 	{
 		// Usando A.(...)
-		if ((keyboard_check_pressed(ord("W")) && !Controll_obj.mouse) || (keyboard_check(vk_rcontrol) && Controll_obj.mouse))
+		if ((keyboard_check_pressed(vk_up) && !Controll_obj.mouse) || (keyboard_check(vk_up) && Controll_obj.mouse))
 		{
 			if (Tge == false && Bti >= room_speed*0.5 && Controll_obj.Pause == false)
 			{
@@ -92,11 +92,11 @@ if (instance_exists(Controll_obj))
 	if (Tx02 <= 224) Tx02 = 224;
 	if (Tx02 >= 724) Tx02 = 724;
 	
-	// Shot
+	// Shoot
 	if (place_meeting(x,y,Player02_obj) && Tge)
 	{
-		// Laptop on
-		if (keyboard_check_pressed(ord("R")) && !Controll_obj.mouse)
+		// Mouse off
+		if (keyboard_check_pressed(vk_space) && !Controll_obj.mouse)
 		{
 			if (instance_exists(Comp_obj) && Comp_obj.Power >= 20)
 			{
@@ -109,7 +109,7 @@ if (instance_exists(Controll_obj))
 			}
 		}
 		
-		// Laptop off
+		// Mouse on
 		if (mouse_check_button_pressed(mb_left) && Controll_obj.mouse)
 		{
 			if (instance_exists(Comp_obj) && Comp_obj.Power >= 20)

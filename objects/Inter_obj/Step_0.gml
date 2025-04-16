@@ -24,24 +24,39 @@ if (instance_exists(Controll_obj) && sprite_index == Button_spr)
 {
 	if (Controll_obj.Li == false)
 	{
-		// Colocando a janela
-		if (place_meeting(x,y,Stelp_obj) && keyboard_check_pressed(ord("W")) && !Controll_obj.Inv)
+		// Eventos de colição
+		if (place_meeting(x,y,Stelp_obj))
 		{
-			audio_play_sound(Click_sound, 3, false);
-			Controll_obj.window = true;
-			
-			// Power Up (cartaz)
-			if (room == Stelf_tubo_04)
+			// Colocando a janela
+			if (keyboard_check_pressed(ord("W")) && !Controll_obj.Inv)
 			{
+				audio_play_sound(Click_sound, 3, false);
+				Controll_obj.window = true;
+			
+				if (Controll_obj.plus != -1) Controll_obj.winspr = P03_spr;
+				else
+				{
+					Controll_obj.winspr = P_spr
+				}
+			
+				// Power Up (cartaz)
+				if (room == Stelf_tubo_04)
+				{
 				
-				if (Controll_obj.plus = 0 && x < room_width/2) Controll_obj.plus++;
-				if (Controll_obj.plus02 = 0 && x > room_width/2) Controll_obj.plus02++; // Outro ponto
+					if (Controll_obj.plus = 0 && x < room_width/2) Controll_obj.plus++;
+					if (Controll_obj.plus02 = 0 && x > room_width/2) Controll_obj.plus02++; // Outro ponto
+				}
 			}
-		}
-		// Tirando a janela
-		if (keyboard_check(ord("D")) || keyboard_check(ord("A"))) 
-		{
-			if (Controll_obj.window && place_meeting(x,y,Stelp_obj)) Controll_obj.window = false;
+			// Tirando a janela
+			if (Controll_obj.window == true)
+			{
+				if (keyboard_check(ord("A")) || keyboard_check(ord("D"))) Tj += .01;
+				if (Tj > .7)
+				{
+					Controll_obj.window = false;
+					Tj = 0;
+				}
+			}
 		}
 	}
 	// Luz ligada
@@ -69,3 +84,5 @@ if (instance_exists(Controll_obj) && sprite_index == Button_spr)
 		}
 	}
 }
+
+

@@ -9,3 +9,7 @@ onfloor = Chao_obj;
 
 if (Controll_obj.quest01)instance_destroy();
 
+// Imagem
+
+image_xscale = .5;
+image_yscale = .5;

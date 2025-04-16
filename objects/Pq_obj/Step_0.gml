@@ -1,8 +1,21 @@
 
-if (room = Energy_05) Controll_obj.blus = y;
+if (room = Energy_05) 
+{
+	Controll_obj.blus = y;
+	// Movendo-se
+	if (!place_meeting(x,y,Chao_obj))
+	{
+		if (x < 576 + 170) x += 1;
+		
+	}
+}
 // Gravidade
 
-Gravity_scr();
+if (!place_meeting(x,y,Chao_obj)) y += 5;
+else
+{
+	sprite_index = Papao02_spr;	
+}
 
 // Variando Pq
 if (y > 256 && Controll_obj.C == false && room == Energy_05)
@@ -14,7 +27,7 @@ if (y > 256 && Controll_obj.C == false && room == Energy_05)
 if (place_meeting(x,y,Player_obj))
 {
 	// Se ativando
-	if (keyboard_check_pressed(ord("W")))
+	if (keyboard_check_pressed(ord("W")) && !place_meeting(x,y,Pb_obj))
 	{
 		showup = true;
 	}

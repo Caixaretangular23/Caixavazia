@@ -1,5 +1,6 @@
+Alpa = 0;
+start_sx = .57
 image_xscale = .57;
-image_yscale = image_xscale;
 
 speed = 1;
 

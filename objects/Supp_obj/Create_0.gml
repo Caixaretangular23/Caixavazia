@@ -6,6 +6,7 @@ Tge = false;
 Tx = 224;
 Ty = 128;
 Tx02 = 480;
+Mtx = room_width/2; // Razão de mouse
 Ta = 0; // Ângulos da mira
 // Tempo de bloqueio
 Bti = 0;

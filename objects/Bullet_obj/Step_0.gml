@@ -10,6 +10,10 @@ if (y < -20 || place_meeting(x,y, Caixa_obj))
 		}
 	}
 	// Sitema de colisão aqui...
-	instance_destroy();
+	if (instance_exists(Caixa_obj) && y < Caixa_obj.ystart) Det = true
 }// Se destruindo
 image_angle += 10; // Girando
+
+// Algumas regras
+if (Det) image_alpha -= .1;
+if (image_alpha <= 0) instance_destroy();

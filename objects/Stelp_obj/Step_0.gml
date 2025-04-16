@@ -39,7 +39,7 @@ if (keyboard_check_released(ord("A")) || keyboard_check_released(ord("D")))
 	sprite_index = Idol;	
 }
 // Levanto e baixo
-if (sprite_index == Baixo_spr && image_index >= 7)
+if (sprite_index == Baixo_spr && image_index >= 6) // Image 7
 {
 	sprite_index = Baixo2_spr;
 	SP = 2;
@@ -63,15 +63,20 @@ if (keyboard_check(ord("S")) && Idol == Baixo2_spr)
 	// Máximo dos limites
 	limitx = 768;	
 	limitxi = 192;
+	Rune = BaixoU_spr;
 	SP = 1;
+	// Janela
+	if (Controll_obj.window) Controll_obj.window = false;
 }
 // Quando solto o S...
 if (!keyboard_check(ord("S")) && sprite_index != Rune)
 {
 		// Travando...
-	if (x >= 384 && x <= 576 && Idol == Baixo2_spr)
+	if (x >= 450 && x <= 500 && Idol == Baixo2_spr)
 	{
 		SP = 0;
+		Rune = Baixo2_spr;
+		sprite_index = Baixo2_spr;
 	}
 	else
 	{
@@ -87,22 +92,27 @@ if (!keyboard_check(ord("S")) && sprite_index != Rune)
 		
 	}
 }
-
+// Empurrando para ajustes
+if (Idol = PlayerES_spr)
+{
+	if (x > 400 && x <= 450) x -= 3;
+	if (x < 550 && x >= 500) x += 3;
+}
 // S solto
 if (!keyboard_check(ord("S")))
 {
 	if (Idol == PlayerES_spr)
 	{
 		// Define o primeiro limite
-		if (x >= 576)
+		if (x >= 550)
 		{
-			limitxi = 576;
+			limitxi = 550;
 			limitx = 732;
 		}
 		// Define o último limite
-		if (x <= 384)
+		if (x <= 400)
 		{
-			limitx = 384;	
+			limitx = 400;	
 			limitxi = 210;
 		}
 	}

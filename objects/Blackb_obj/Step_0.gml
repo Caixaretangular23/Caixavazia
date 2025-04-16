@@ -54,6 +54,7 @@ if (place_meeting(x,y,ColliderV_obj) && mouse_check_button_pressed(mb_left))
 	{
 		instance_create_layer(0,0,"Instances_UP", T_obj);
 		T_obj.De = Energy_05;
+		T_obj.Ado = .001
 		Controll_obj.Los = 3;
 		Controll_obj.Not = true;
 		Controll_obj.Li = true;

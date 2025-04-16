@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"Porta01",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":3.06,
+  "name":"Porta01",
+  "parent":{
+    "name":"Pack",
+    "path":"folders/Sounds/Pack.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"Porta01.mp3",
+  "type":0,
+  "volume":1.0,
+}

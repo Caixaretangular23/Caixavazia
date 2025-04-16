@@ -12,5 +12,8 @@ else
 
 if (room == Stelf_tubo_04) sprite_index = Button_spr;
 
+mtime = 0; // Sei lá o que é isso kkkk
 
-mtime = 0;
+// Frescura de janela :(
+
+Tj = 0;
